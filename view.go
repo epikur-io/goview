@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -22,7 +21,7 @@ var DefaultConfig = Config{
 	Extension:    ".html",
 	Master:       "layouts/master",
 	Partials:     []string{},
-	Funcs:        make(template.FuncMap),
+	Funcs:        ExtFunctions(), // 集成函数
 	DisableCache: false,
 	Delims:       Delims{Left: "{{", Right: "}}"},
 }
@@ -103,14 +102,17 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{
 	var err error
 	var ok bool
 
-	allFuncs := make(template.FuncMap, 0)
+	// 首先加载函数作为基础
+	allFuncs := ExtFunctions()
+
+	// 添加内置的include函数
 	allFuncs["include"] = func(layout string) (template.HTML, error) {
 		buf := new(bytes.Buffer)
 		err := e.executeTemplate(buf, layout, data, false)
 		return template.HTML(buf.String()), err
 	}
 
-	// Get the plugin collection
+	// 用户自定义函数会覆盖同名的函数
 	for k, v := range e.config.Funcs {
 		allFuncs[k] = v
 	}
@@ -184,7 +186,7 @@ func DefaultFileHandler() FileHandler {
 		if err != nil {
 			return "", fmt.Errorf("ViewEngine path:%v error: %v", path, err)
 		}
-		data, err := ioutil.ReadFile(path)
+		data, err := os.ReadFile(path)
 		if err != nil {
 			return "", fmt.Errorf("ViewEngine render read name:%v, path:%v, error: %v", tplFile, path, err)
 		}

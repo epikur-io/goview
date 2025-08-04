@@ -53,6 +53,7 @@ go get github.com/foolin/goview
 * **No external dependencies** - plain ol' Go html/template.
 * **Gorice** - Support gorice for package resources.
 * **Gin/Iris/Echo/Chi** - Support gin framework, Iris framework, echo framework, go-chi framework.
+* **Extentions Functions** - Support all template functions (195+ functions) for strings, math, collections, time, crypto, and more.
 
 
 ## Docs
@@ -256,7 +257,67 @@ http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 {{ call $.reverse "route-name" }}
 ```
 
+### Extension template functions
 
+GoView comes with **195+ built-in template functions** that provide powerful functionality for string manipulation, mathematical operations, collections processing, and much more. These functions are automatically available in all templates.
+
+#### Quick Examples
+
+```html
+<!-- String functions -->
+<h1>{{ .title | upper }}</h1>
+<p>{{ .description | truncate 100 }}</p>
+<p>Contains "go": {{ contains .title "go" }}</p>
+
+<!-- Math functions -->
+<p>Total: {{ add .price .tax }}</p>
+<p>Average: {{ div (.total | float) .count }}</p>
+
+<!-- Collections -->
+{{ range first 5 .items }}
+    <li>{{ . }}</li>
+{{ end }}
+
+<!-- Time functions -->
+<p>Published: {{ .date | time.Format "January 2, 2006" }}</p>
+
+<!-- Safe HTML -->
+<div>{{ .content | safeHTML }}</div>
+
+<!-- Crypto functions -->
+<p>Hash: {{ .password | sha256 }}</p>
+```
+
+#### Available Function Categories
+
+- **strings**: upper, lower, title, trim, replace, split, contains, hasPrefix, etc.
+- **math**: add, sub, mul, div, max, min, abs, ceil, floor, round, sqrt, pow, etc.
+- **collections**: first, last, sort, reverse, uniq, intersect, union, where, etc.
+- **compare**: eq, ne, gt, lt, ge, le, default, conditional, etc.
+- **time**: now, format, asTime, parseDuration, etc.
+- **crypto**: md5, sha1, sha256, fnv32a, etc.
+- **encoding**: base64Encode, base64Decode, jsonify, etc.
+- **safe**: safeHTML, safeCSS, safeJS, safeURL, etc.
+- **path**: base, dir, ext, join, clean, etc.
+- **urls**: absURL, relURL, urlize, anchorize, etc.
+
+#### Namespace Usage
+
+Functions can be called using either namespace syntax or short aliases:
+
+```html
+<!-- Namespace syntax (recommended) -->
+{{ strings.ToUpper "hello" }}
+{{ math.Add 1 2 3 }}
+{{ collections.First 5 .items }}
+
+<!-- Short aliases -->
+{{ upper "hello" }}
+{{ add 1 2 3 }}
+{{ first 5 .items }}
+```
+
+For detailed documentation and examples, see [EXTENSION_FUNCTIONS.md](EXTENSION_FUNCTIONS.md).
 
 ## Examples
 

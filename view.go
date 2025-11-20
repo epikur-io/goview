@@ -122,7 +122,7 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data any, useMa
 	}
 	renderCtx.Funcs["include"] = func(layout string) (template.HTML, error) {
 		buf := new(bytes.Buffer)
-		err := e.executeTemplate(buf, layout, data, false)
+		err := e.executeTemplate(buf, layout, data, false, opts...)
 		return template.HTML(buf.String()), err
 	}
 

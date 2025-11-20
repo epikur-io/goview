@@ -1,14 +1,14 @@
 # IrisView
 
-[![GoDoc Widget]][GoDoc] 
+[![GoDoc Widget]][GoDoc]
 
 goview support for Iris template.
 
 ## Install
 
 ```sh
-$ go get -u github.com/foolin/goview
-$ go get -u github.com/foolin/goview/supports/irisview
+$ go get -u github.com/epikur-io/goview
+$ go get -u github.com/epikur-io/goview/supports/irisview
 ```
 
 ### Example
@@ -17,7 +17,7 @@ $ go get -u github.com/foolin/goview/supports/irisview
 package main
 
 import (
-	"github.com/foolin/goview/supports/irisview"
+	"github.com/epikur-io/goview/supports/irisview"
 	"github.com/kataras/iris/v12"
 )
 
@@ -49,21 +49,21 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Iris example](https://github.com/foolin/goview/tree/master/_examples/iris)
-           
+[Iris example](https://github.com/epikur-io/goview/tree/master/_examples/iris)
+
 ## More examples
 
-See [_examples/](https://github.com/foolin/goview/blob/master/_examples/) for a variety of examples.
+See [_examples/](https://github.com/epikur-io/goview/blob/master/_examples/) for a variety of examples.
 
-[GoDoc]: https://godoc.org/github.com/foolin/goview/supports/irisview
-[GoDoc Widget]: https://godoc.org/github.com/foolin/goview/supports/irisview?status.svg
+[GoDoc]: https://godoc.org/github.com/epikur-io/goview/supports/irisview
+[GoDoc Widget]: https://godoc.org/github.com/epikur-io/goview/supports/irisview?status.svg

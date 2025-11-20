@@ -10,9 +10,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/foolin/goview"
-	"github.com/go-chi/chi"
 	"net/http"
+
+	"github.com/epikur-io/goview"
+	"github.com/go-chi/chi"
 )
 
 func main() {

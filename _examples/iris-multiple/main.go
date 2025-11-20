@@ -12,8 +12,8 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/irisview"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/irisview"
 	"github.com/kataras/iris/v12"
 )
 

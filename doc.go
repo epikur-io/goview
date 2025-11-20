@@ -1,13 +1,13 @@
-//Package goview a lightweight, minimalist and idiomatic template library
-//based on golang html/template for building Go web application.
+// Package goview a lightweight, minimalist and idiomatic template library
+// based on golang html/template for building Go web application.
 //
-//Example:
+// Example:
 //
 //	package main
 //
 //	import (
 //		"fmt"
-//		"github.com/foolin/goview"
+//		"github.com/epikur-io/goview"
 //		"net/http"
 //	)
 //
@@ -40,31 +40,28 @@
 //
 //	}
 //
+// Project structure:
 //
-//Project structure:
+//	  |-- app/views/
+//		   |--- index.html
+//		   |--- page.html
+//		   |-- layouts/
+//			   |--- footer.html
+//			   |--- master.html
 //
-//   |-- app/views/
-//	   |--- index.html
-//	   |--- page.html
-//	   |-- layouts/
-//		   |--- footer.html
-//		   |--- master.html
+// Learn more at https://github.com/epikur-io/goview
 //
-//Learn more at https://github.com/foolin/goview
+// ================== Supports ==================
 //
+// Ginview for Gin framework:
+// https://godoc.org/github.com/epikur-io/goview/supports/ginview
 //
+// Echoview for Echo framework:
+// https://godoc.org/github.com/epikur-io/goview/supports/echoview
 //
-//================== Supports ==================
+// Gorice for Go.rice:
+// https://godoc.org/github.com/epikur-io/goview/supports/gorice
 //
-//Ginview for Gin framework:
-//https://godoc.org/github.com/foolin/goview/supports/ginview
-//
-//Echoview for Echo framework:
-//https://godoc.org/github.com/foolin/goview/supports/echoview
-//
-//Gorice for Go.rice:
-//https://godoc.org/github.com/foolin/goview/supports/gorice
-//
-//Examples:
-//https://github.com/foolin/goview/_examples
+// Examples:
+// https://github.com/epikur-io/goview/_examples
 package goview

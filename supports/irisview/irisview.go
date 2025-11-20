@@ -3,7 +3,7 @@ package irisview
 import (
 	"io"
 
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/view"

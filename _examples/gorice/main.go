@@ -10,10 +10,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/GeertJohan/go.rice"
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/gorice"
 	"net/http"
+
+	rice "github.com/GeertJohan/go.rice"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/gorice"
 )
 
 func main() {

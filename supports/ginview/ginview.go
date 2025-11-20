@@ -3,7 +3,7 @@ package ginview
 import (
 	"net/http"
 
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/render"
 )

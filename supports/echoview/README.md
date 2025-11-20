@@ -1,18 +1,18 @@
 # EchoView
 
-[![GoDoc Widget]][GoDoc] 
+[![GoDoc Widget]][GoDoc]
 
 goview support for echo template v4 version.
 
-V4 version please see: [echoview-v4 for Echo v4 version](https://github.com/foolin/goview/tree/master/supports/echoview-v4)
+V4 version please see: [echoview-v4 for Echo v4 version](https://github.com/epikur-io/goview/tree/master/supports/echoview-v4)
 
 ## Install
 
 ```bash
 
-go get -u github.com/foolin/goview
+go get -u github.com/epikur-io/goview
 
-go get -u github.com/foolin/goview/supports/echoview
+go get -u github.com/epikur-io/goview/supports/echoview
 
 ```
 
@@ -23,7 +23,7 @@ go get -u github.com/foolin/goview/supports/echoview
 package main
 
 import (
-	"github.com/foolin/goview/supports/echoview"
+	"github.com/epikur-io/goview/supports/echoview"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"net/http"
@@ -66,23 +66,23 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Echo example](https://github.com/foolin/goview/tree/master/_examples/echo)
+[Echo example](https://github.com/epikur-io/goview/tree/master/_examples/echo)
 
 
-           
+
 ## More examples
 
-See [_examples/](https://github.com/foolin/goview/blob/master/_examples/) for a variety of examples.
+See [_examples/](https://github.com/epikur-io/goview/blob/master/_examples/) for a variety of examples.
 
-[GoDoc]: https://godoc.org/github.com/foolin/goview/supports/echoview
-[GoDoc Widget]: https://godoc.org/github.com/foolin/goview/supports/echoview?status.svg
+[GoDoc]: https://godoc.org/github.com/epikur-io/goview/supports/echoview
+[GoDoc Widget]: https://godoc.org/github.com/epikur-io/goview/supports/echoview?status.svg

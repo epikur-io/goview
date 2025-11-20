@@ -14,9 +14,9 @@ import (
 	"time"
 
 	rice "github.com/GeertJohan/go.rice"
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/ginview"
-	"github.com/foolin/goview/supports/gorice"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/ginview"
+	"github.com/epikur-io/goview/supports/gorice"
 	"github.com/gin-gonic/gin"
 )
 

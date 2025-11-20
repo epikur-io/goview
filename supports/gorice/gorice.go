@@ -2,7 +2,7 @@ package gorice
 
 import (
 	rice "github.com/GeertJohan/go.rice"
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 )
 
 // New new gorice template engine, default views root.

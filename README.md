@@ -1,6 +1,6 @@
 # goview
 
-[![GoDoc Widget]][GoDoc] [![Travis Widget]][Travis] [![GoReportCard Widget]][GoReportCard] 
+[![GoDoc Widget]][GoDoc] [![Travis Widget]][Travis] [![GoReportCard Widget]][GoReportCard]
 
 Goview is a lightweight, minimalist and idiomatic template library based on golang [html/template](https://golang.org/pkg/html/template/) for building Go web application.
 
@@ -10,10 +10,10 @@ Goview is a lightweight, minimalist and idiomatic template library based on gola
 - [Features](#features)
 - [Docs](#docs)
 - [Supports](#supports)
-    - [Gin Framework](https://github.com/foolin/goview/tree/master/supports/ginview)
-    - [Iris Framework](https://github.com/foolin/goview/tree/master/supports/irisview)
-    - [Echo Framework](https://github.com/foolin/goview/tree/master/supports/echoview)
-    - [Go.Rice](https://github.com/foolin/goview/tree/master/supports/gorice)
+    - [Gin Framework](https://github.com/epikur-io/goview/tree/master/supports/ginview)
+    - [Iris Framework](https://github.com/epikur-io/goview/tree/master/supports/irisview)
+    - [Echo Framework](https://github.com/epikur-io/goview/tree/master/supports/echoview)
+    - [Go.Rice](https://github.com/epikur-io/goview/tree/master/supports/gorice)
 - [Usage](#usage)
     - [Overview](#overview)
     - [Config](#config)
@@ -35,7 +35,7 @@ Goview is a lightweight, minimalist and idiomatic template library based on gola
 
 ## Install
 ```bash
-go get github.com/foolin/goview
+go get github.com/epikur-io/goview
 ```
 
 
@@ -56,14 +56,14 @@ go get github.com/foolin/goview
 
 
 ## Docs
-See <https://www.godoc.org/github.com/foolin/goview>
+See <https://www.godoc.org/github.com/epikur-io/goview>
 
 
 ## Supports
-- **[ginview](https://github.com/foolin/goview/tree/master/supports/ginview)** goview for gin framework
-- **[irisview](https://github.com/foolin/goview/tree/master/supports/irisview)** goview for Iris framework
-- **[echoview](https://github.com/foolin/goview/tree/master/supports/echoview)** goview for echo framework
-- **[gorice](https://github.com/foolin/goview/tree/master/supports/gorice)** goview for go.rice
+- **[ginview](https://github.com/epikur-io/goview/tree/master/supports/ginview)** goview for gin framework
+- **[irisview](https://github.com/epikur-io/goview/tree/master/supports/irisview)** goview for Iris framework
+- **[echoview](https://github.com/epikur-io/goview/tree/master/supports/echoview)** goview for echo framework
+- **[gorice](https://github.com/epikur-io/goview/tree/master/supports/gorice)** goview for go.rice
 
 
 ## Usage
@@ -74,12 +74,12 @@ Project structure:
 
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-   
+
 ```
 
 Use default instance:
@@ -110,10 +110,10 @@ Use new instance with config:
         DisableCache: true,
 	Delims:    Delims{Left: "{{", Right: "}}"},
     })
-    
+
     //Set new instance
     goview.Use(gv)
-    
+
     //write http.ResponseWriter
     goview.Render(writer, http.StatusOK, "index", goview.M{})
 
@@ -140,10 +140,10 @@ Use multiple instance with config:
         DisableCache: true,
 	Delims:       Delims{Left: "{{", Right: "}}"},
     })
-    
+
     //write http.ResponseWriter
     gvFrontend.Render(writer, http.StatusOK, "index", goview.M{})
-    
+
     //============== Backend ============== //
     gvBackend := goview.New(goview.Config{
         Root:      "views/backend",
@@ -161,7 +161,7 @@ Use multiple instance with config:
         DisableCache: true,
 	Delims:       Delims{Left: "{{", Right: "}}"},
     })
-    
+
     //write http.ResponseWriter
     gvBackend.Render(writer, http.StatusOK, "index", goview.M{})
 
@@ -193,7 +193,7 @@ goview.Config{
 {{include "layouts/footer"}}
 ```
 
-### Render name: 
+### Render name:
 
 Render name use `index` without `.html` extension, that will render with master layout.
 
@@ -260,7 +260,7 @@ http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
 ## Examples
 
-See [_examples/](https://github.com/foolin/goview/blob/master/_examples/) for a variety of examples.
+See [_examples/](https://github.com/epikur-io/goview/blob/master/_examples/) for a variety of examples.
 
 
 ### Basic example
@@ -270,7 +270,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 	"net/http"
 )
 
@@ -308,23 +308,23 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Basic example](https://github.com/foolin/goview/tree/master/_examples/basic)
+[Basic example](https://github.com/epikur-io/goview/tree/master/_examples/basic)
 
 
 ### Gin example
 
 ```bash
-go get github.com/foolin/goview/supports/ginview
+go get github.com/epikur-io/goview/supports/ginview
 ```
 
 ```go
@@ -332,7 +332,7 @@ go get github.com/foolin/goview/supports/ginview
 package main
 
 import (
-	"github.com/foolin/goview/supports/ginview"
+	"github.com/epikur-io/goview/supports/ginview"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -366,29 +366,29 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Gin example](https://github.com/foolin/goview/tree/master/_examples/gin)
+[Gin example](https://github.com/epikur-io/goview/tree/master/_examples/gin)
 
 ### Iris example
 
 ```bash
-$ go get github.com/foolin/goview/supports/irisview
+$ go get github.com/epikur-io/goview/supports/irisview
 ```
 
 ```go
 package main
 
 import (
-	"github.com/foolin/goview/supports/irisview"
+	"github.com/epikur-io/goview/supports/irisview"
 	"github.com/kataras/iris/v12"
 )
 
@@ -420,17 +420,17 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/iris" folder
 ```
 
-[Iris example](https://github.com/foolin/goview/tree/master/_examples/iris)
+[Iris example](https://github.com/epikur-io/goview/tree/master/_examples/iris)
 
 
 ### Iris multiple example
@@ -442,8 +442,8 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/irisview"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/irisview"
 	"github.com/kataras/iris/v12"
 )
 
@@ -517,23 +517,23 @@ Project structure:
             |--- footer.html
             |--- head.html
             |--- master.html
-        
+
 See in "examples/iris-multiple" folder
 ```
 
-[Iris multiple example](https://github.com/foolin/goview/tree/master/_examples/iris-multiple)
+[Iris multiple example](https://github.com/epikur-io/goview/tree/master/_examples/iris-multiple)
 
 ### Echo example
 
 Echo <=v3 version:
 ```bash
-go get github.com/foolin/goview/supports/echoview
+go get github.com/epikur-io/goview/supports/echoview
 ```
 
 Echo v4 version:
 
 ```bash
-go get github.com/foolin/goview/supports/echoview-v4
+go get github.com/epikur-io/goview/supports/echoview-v4
 ```
 
 
@@ -542,7 +542,7 @@ go get github.com/foolin/goview/supports/echoview-v4
 package main
 
 import (
-	"github.com/foolin/goview/supports/echoview"
+	"github.com/epikur-io/goview/supports/echoview"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"net/http"
@@ -585,18 +585,18 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Echo example](https://github.com/foolin/goview/tree/master/_examples/echo)
-[Echo v4 example](https://github.com/foolin/goview/tree/master/_examples/echo-v4)
+[Echo example](https://github.com/epikur-io/goview/tree/master/_examples/echo)
+[Echo v4 example](https://github.com/epikur-io/goview/tree/master/_examples/echo-v4)
 
 
 ### Go-chi example
@@ -606,7 +606,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 	"github.com/go-chi/chi"
 	"net/http"
 )
@@ -646,17 +646,17 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-    
+
 
 See in "examples/basic" folder
 ```
 
-[Chi example](https://github.com/foolin/goview/tree/master/_examples/go-chi)
+[Chi example](https://github.com/epikur-io/goview/tree/master/_examples/go-chi)
 
 
 
@@ -667,7 +667,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 	"html/template"
 	"net/http"
 	"time"
@@ -725,7 +725,7 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.tpl          
+    |--- index.tpl
     |--- page.tpl
     |-- layouts/
         |--- footer.tpl
@@ -733,12 +733,12 @@ Project structure:
         |--- master.tpl
     |-- partials/
         |--- ad.tpl
-    
+
 
 See in "examples/advance" folder
 ```
 
-[Advance example](https://github.com/foolin/goview/tree/master/_examples/advance)
+[Advance example](https://github.com/epikur-io/goview/tree/master/_examples/advance)
 
 ### Multiple example
 ```go
@@ -750,7 +750,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/foolin/goview"
+	"github.com/epikur-io/goview"
 	"github.com/gin-gonic/gin"
 )
 
@@ -829,17 +829,17 @@ Project structure:
             |--- footer.html
             |--- head.html
             |--- master.html
-        
+
 See in "examples/multiple" folder
 ```
 
-[Multiple example](https://github.com/foolin/goview/tree/master/_examples/multiple)
+[Multiple example](https://github.com/epikur-io/goview/tree/master/_examples/multiple)
 
 
 ### go.rice example
 
 ```bash
-go get github.com/foolin/goview/supports/gorice
+go get github.com/epikur-io/goview/supports/gorice
 ```
 
 ```go
@@ -849,8 +849,8 @@ package main
 import (
 	"fmt"
 	"github.com/GeertJohan/go.rice"
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/gorice"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/gorice"
 	"net/http"
 )
 
@@ -897,38 +897,38 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-|-- app/static/  
+|-- app/static/
     |-- css/
-        |--- bootstrap.css   	
+        |--- bootstrap.css
     |-- img/
         |--- gopher.png
 
 See in "examples/gorice" folder
 ```
 
-[gorice example](https://github.com/foolin/goview/tree/master/_examples/gorice)
+[gorice example](https://github.com/epikur-io/goview/tree/master/_examples/gorice)
 
 ### More examples
 
-See [_examples/](https://github.com/foolin/goview/blob/master/_examples/) for a variety of examples.
+See [_examples/](https://github.com/epikur-io/goview/blob/master/_examples/) for a variety of examples.
 
 
-[GoDoc]: https://godoc.org/github.com/foolin/goview
-[GoDoc Widget]: https://godoc.org/github.com/foolin/goview?status.svg
+[GoDoc]: https://godoc.org/github.com/epikur-io/goview
+[GoDoc Widget]: https://godoc.org/github.com/epikur-io/goview?status.svg
 [Travis]: https://travis-ci.org/foolin/goview
 [Travis Widget]: https://travis-ci.org/foolin/goview.svg?branch=master
-[GoReportCard]: https://goreportcard.com/report/github.com/foolin/goview
-[GoReportCard Widget]: https://goreportcard.com/badge/github.com/foolin/goview
-[GoCover]: https://goreportcard.com/report/github.com/foolin/goview
-[GoCover Widget]: https://goreportcard.com/badge/github.com/foolin/goview
+[GoReportCard]: https://goreportcard.com/report/github.com/epikur-io/goview
+[GoReportCard Widget]: https://goreportcard.com/badge/github.com/epikur-io/goview
+[GoCover]: https://goreportcard.com/report/github.com/epikur-io/goview
+[GoCover Widget]: https://goreportcard.com/badge/github.com/epikur-io/goview
 
 
 ### Todo
  [ ] Add Partials support directory or glob
  [ ] Add functions support.
- 
+

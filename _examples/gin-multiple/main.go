@@ -9,12 +9,13 @@
 package main
 
 import (
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/ginview"
-	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
 	"time"
+
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/ginview"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {

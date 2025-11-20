@@ -1,15 +1,15 @@
 # GoRice
 
-[![GoDoc Widget]][GoDoc] 
+[![GoDoc Widget]][GoDoc]
 
 goview support for go.rice
 
 ## Install
 ```bash
 
-go get -u github.com/foolin/goview
+go get -u github.com/epikur-io/goview
 
-go get -u github.com/foolin/goview/supports/gorice
+go get -u github.com/epikur-io/goview/supports/gorice
 
 ```
 
@@ -23,8 +23,8 @@ package main
 import (
 	"fmt"
 	"github.com/GeertJohan/go.rice"
-	"github.com/foolin/goview"
-	"github.com/foolin/goview/supports/gorice"
+	"github.com/epikur-io/goview"
+	"github.com/epikur-io/goview/supports/gorice"
 	"net/http"
 )
 
@@ -71,27 +71,27 @@ func main() {
 Project structure:
 ```go
 |-- app/views/
-    |--- index.html          
+    |--- index.html
     |--- page.html
     |-- layouts/
         |--- footer.html
         |--- master.html
-|-- app/static/  
+|-- app/static/
     |-- css/
-        |--- bootstrap.css   	
+        |--- bootstrap.css
     |-- img/
         |--- gopher.png
 
 See in "examples/gorice" folder
 ```
 
-[gorice example](https://github.com/foolin/goview/tree/master/_examples/gorice)
+[gorice example](https://github.com/epikur-io/goview/tree/master/_examples/gorice)
 
 
-           
+
 ## More examples
 
-See [_examples/](https://github.com/foolin/goview/blob/master/_examples/) for a variety of examples.
+See [_examples/](https://github.com/epikur-io/goview/blob/master/_examples/) for a variety of examples.
 
-[GoDoc]: https://godoc.org/github.com/foolin/goview/supports/gorice
-[GoDoc Widget]: https://godoc.org/github.com/foolin/goview/supports/gorice?status.svg
+[GoDoc]: https://godoc.org/github.com/epikur-io/goview/supports/gorice
+[GoDoc Widget]: https://godoc.org/github.com/epikur-io/goview/supports/gorice?status.svg

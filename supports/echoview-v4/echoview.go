@@ -32,14 +32,14 @@ func Default() *ViewEngine {
 }
 
 // Render render template for echo interface
-func (e *ViewEngine) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+func (e *ViewEngine) Render(w io.Writer, name string, data any, c echo.Context) error {
 	return e.RenderWriter(w, name, data)
 }
 
 // Render html render for template
 // You should use helper func `Middleware()` to set the supplied
 // TemplateEngine and make `Render()` work validly.
-func Render(ctx echo.Context, code int, name string, data interface{}) error {
+func Render(ctx echo.Context, code int, name string, data any) error {
 	if val := ctx.Get(templateEngineKey); val != nil {
 		if e, ok := val.(*ViewEngine); ok {
 			return e.Render(ctx.Response().Writer, name, data, ctx)

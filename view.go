@@ -47,13 +47,23 @@ type Config struct {
 }
 
 // M map interface for data
-type M map[string]interface{}
+type M map[string]any
 
 // Delims delims for template
 type Delims struct {
 	Left  string
 	Right string
 }
+
+type RenderContext struct {
+	Name      string
+	Funcs     template.FuncMap
+	UseMaster bool
+	Config    Config
+	Data      any
+}
+
+type RenderOption func(ctx *RenderContext)
 
 // FileHandler file handler interface
 type FileHandler func(config Config, tplFile string) (content string, err error)
@@ -74,37 +84,43 @@ func Default() *ViewEngine {
 }
 
 // Render render template with http.ResponseWriter
-func (e *ViewEngine) Render(w http.ResponseWriter, statusCode int, name string, data interface{}) error {
+func (e *ViewEngine) Render(w http.ResponseWriter, statusCode int, name string, data any, opts ...RenderOption) error {
 	header := w.Header()
 	if val := header["Content-Type"]; len(val) == 0 {
 		header["Content-Type"] = HTMLContentType
 	}
 	w.WriteHeader(statusCode)
-	return e.executeRender(w, name, data)
+	return e.executeRender(w, name, data, opts...)
 }
 
 // RenderWriter render template with io.Writer
-func (e *ViewEngine) RenderWriter(w io.Writer, name string, data interface{}) error {
-	return e.executeRender(w, name, data)
+func (e *ViewEngine) RenderWriter(w io.Writer, name string, data any, opts ...RenderOption) error {
+	return e.executeRender(w, name, data, opts...)
 }
 
-func (e *ViewEngine) executeRender(out io.Writer, name string, data interface{}) error {
+func (e *ViewEngine) executeRender(out io.Writer, name string, data any, opts ...RenderOption) error {
 	useMaster := true
 	if filepath.Ext(name) == e.config.Extension {
 		useMaster = false
 		name = strings.TrimSuffix(name, e.config.Extension)
 
 	}
-	return e.executeTemplate(out, name, data, useMaster)
+	return e.executeTemplate(out, name, data, useMaster, opts...)
 }
 
-func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{}, useMaster bool) error {
+func (e *ViewEngine) executeTemplate(out io.Writer, name string, data any, useMaster bool, opts ...RenderOption) error {
 	var tpl *template.Template
 	var err error
 	var ok bool
 
-	allFuncs := make(template.FuncMap, 0)
-	allFuncs["include"] = func(layout string) (template.HTML, error) {
+	renderCtx := &RenderContext{
+		Name:      name,
+		Data:      data,
+		UseMaster: useMaster,
+		Config:    e.config,
+		Funcs:     make(template.FuncMap, 0),
+	}
+	renderCtx.Funcs["include"] = func(layout string) (template.HTML, error) {
 		buf := new(bytes.Buffer)
 		err := e.executeTemplate(buf, layout, data, false)
 		return template.HTML(buf.String()), err
@@ -112,7 +128,10 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{
 
 	// Get the plugin collection
 	for k, v := range e.config.Funcs {
-		allFuncs[k] = v
+		renderCtx.Funcs[k] = v
+	}
+	for _, opt := range opts {
+		opt(renderCtx)
 	}
 
 	e.tplMutex.RLock()
@@ -120,13 +139,13 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{
 	e.tplMutex.RUnlock()
 
 	exeName := name
-	if useMaster && e.config.Master != "" {
+	if renderCtx.UseMaster && e.config.Master != "" {
 		exeName = e.config.Master
 	}
 
 	if !ok || e.config.DisableCache {
 		tplList := make([]string, 0)
-		if useMaster {
+		if renderCtx.UseMaster {
 			//render()
 			if e.config.Master != "" {
 				tplList = append(tplList, e.config.Master)
@@ -136,7 +155,7 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{
 		tplList = append(tplList, e.config.Partials...)
 
 		// Loop through each template and test the full path
-		tpl = template.New(name).Funcs(allFuncs).Delims(e.config.Delims.Left, e.config.Delims.Right)
+		tpl = template.New(name).Funcs(renderCtx.Funcs).Delims(e.config.Delims.Left, e.config.Delims.Right)
 		for _, v := range tplList {
 			var data string
 			data, err = e.fileHandler(e.config, v)
@@ -160,7 +179,7 @@ func (e *ViewEngine) executeTemplate(out io.Writer, name string, data interface{
 	}
 
 	// Display the content to the screen
-	err = tpl.Funcs(allFuncs).ExecuteTemplate(out, exeName, data)
+	err = tpl.Funcs(renderCtx.Funcs).ExecuteTemplate(out, exeName, data)
 	if err != nil {
 		return fmt.Errorf("ViewEngine execute template error: %v", err)
 	}

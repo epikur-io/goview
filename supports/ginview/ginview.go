@@ -19,7 +19,7 @@ type ViewEngine struct {
 type ViewRender struct {
 	Engine *ViewEngine
 	Name   string
-	Data   interface{}
+	Data   any
 }
 
 // New new view engine for gin
@@ -40,7 +40,7 @@ func Default() *ViewEngine {
 }
 
 // Instance implement gin interface
-func (e *ViewEngine) Instance(name string, data interface{}) render.Render {
+func (e *ViewEngine) Instance(name string, data any) render.Render {
 	return ViewRender{
 		Engine: e,
 		Name:   name,
@@ -49,7 +49,7 @@ func (e *ViewEngine) Instance(name string, data interface{}) render.Render {
 }
 
 // HTML render html
-func (e *ViewEngine) HTML(ctx *gin.Context, code int, name string, data interface{}) {
+func (e *ViewEngine) HTML(ctx *gin.Context, code int, name string, data any) {
 	instance := e.Instance(name, data)
 	ctx.Render(code, instance)
 }
@@ -82,7 +82,7 @@ func Middleware(e *ViewEngine) gin.HandlerFunc {
 // HTML html render for template
 // You should use helper func `Middleware()` to set the supplied
 // TemplateEngine and make `HTML()` work validly.
-func HTML(ctx *gin.Context, code int, name string, data interface{}) {
+func HTML(ctx *gin.Context, code int, name string, data any) {
 	if val, ok := ctx.Get(templateEngineKey); ok {
 		if e, ok := val.(*ViewEngine); ok {
 			e.HTML(ctx, code, name, data)

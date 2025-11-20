@@ -52,7 +52,7 @@ func (e *ViewEngine) Ext() string {
 
 // ExecuteWriter executes a template by its name.
 // It supports multiple templates, see `NewMiddleware` and `Middleware` too.
-func (e *ViewEngine) ExecuteWriter(w io.Writer, filename string, _ string, bindingData interface{}) error {
+func (e *ViewEngine) ExecuteWriter(w io.Writer, filename string, _ string, bindingData any) error {
 	if ctx, ok := w.(iris.Context); ok {
 		if v := ctx.Values().Get(templateEngineKey); v != nil {
 			if e, ok := v.(*ViewEngine); ok {
